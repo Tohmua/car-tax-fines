@@ -1,4 +1,4 @@
-#Car Tax Fines
+#Car Tax Fines Rules
 
 ###Basic
 * Fine Increases (%) as time passes (petrol cars)
