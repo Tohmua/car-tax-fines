@@ -114,7 +114,31 @@ class CarTaxFinesSpec extends ObjectBehavior
              ->shouldReturn('£1200.00');
     }
 
-    public function it_should_send_you_to_jail_if_expired_is_over_6_months()
+    public function it_should_send_you_to_jail_if_expired_is_over_6_months_and_petrol()
+    {
+        $this->shouldThrow('Exception')
+             ->during(
+                'fine',
+                [
+                    'petrol',
+                    date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 187, date("Y")))
+                ]
+             );
+    }
+
+    public function it_should_send_you_to_jail_if_expired_is_over_6_months_and_diesel()
+    {
+        $this->shouldThrow('Exception')
+             ->during(
+                'fine',
+                [
+                    'diesel',
+                    date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 187, date("Y")))
+                ]
+             );
+    }
+
+    public function it_should_send_you_to_jail_if_expired_is_over_6_months_and_motorbike()
     {
         $this->shouldThrow('Exception')
              ->during(
