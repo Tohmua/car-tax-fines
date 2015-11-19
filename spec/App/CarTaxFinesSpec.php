@@ -86,31 +86,31 @@ class CarTaxFinesSpec extends ObjectBehavior
 
     public function it_should_return_fine_if_motorbike_expired_by_2_months()
     {
-        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 32, date("Y"))))
+        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m") - 1, date("d"), date("Y"))))
              ->shouldReturn('£400.00');
     }
 
     public function it_should_return_fine_if_motorbike_expired_by_3_months()
     {
-        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 63, date("Y"))))
+        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m") - 2, date("d"), date("Y"))))
              ->shouldReturn('£600.00');
     }
 
     public function it_should_return_fine_if_motorbike_expired_by_4_months()
     {
-        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 94, date("Y"))))
+        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m") - 3, date("d"), date("Y"))))
              ->shouldReturn('£800.00');
     }
 
     public function it_should_return_fine_if_motorbike_expired_by_5_months()
     {
-        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 125, date("Y"))))
+        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m") - 4, date("d"), date("Y"))))
              ->shouldReturn('£1000.00');
     }
 
     public function it_should_return_fine_if_motorbike_expired_by_6_months()
     {
-        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 156, date("Y"))))
+        $this->fine('motorbike', date("Y-m-d", mktime(0, 0, 0, date("m") - 5, date("d"), date("Y"))))
              ->shouldReturn('£1200.00');
     }
 
@@ -121,7 +121,7 @@ class CarTaxFinesSpec extends ObjectBehavior
                 'fine',
                 [
                     'petrol',
-                    date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 187, date("Y")))
+                    date("Y-m-d", mktime(0, 0, 0, date("m") - 6, date("d"), date("Y")))
                 ]
              );
     }
