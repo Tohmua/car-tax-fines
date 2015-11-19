@@ -149,4 +149,10 @@ class CarTaxFinesSpec extends ObjectBehavior
                 ]
              );
     }
+    public function it_should_not_send_me_to_jail_cos_i_is_rich()
+    {
+        $this->fine('petrol', date("Y-m-d", mktime(0, 0, 0, date("m") - 6, date("d"), date("Y"))), 1000000)
+            ->shouldReturn('£500000.00');
+
+    }
 }
