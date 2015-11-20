@@ -19,7 +19,8 @@ class CarTaxFines
             $this->checkToBeSentencedToJail($taxExpiresDate);
             return FineCalculatorFactory::create($type)->calculate($taxExpiresDate);
         } catch (SentencedToJail $e) {
-            throw new Exception('Go to jail, do not go past go, do not collect £200');
+            // Need to pass this through at some point
+            return $this->courtRuling(1000000);
         } catch (DeadlineNotPassed $e) {
             return 0;
         }
@@ -35,5 +36,14 @@ class CarTaxFines
         if (TimeSinceDeadline::months($taxExpiresDate) >= 6) {
             throw new SentencedToJail;
         }
+    }
+
+    protected function courtRuling($netWorth)
+    {
+        if ($netWorth <= 1000000) {
+            throw new Exception('Go to jail, do not go past go, do not collect £200');
+        }
+
+        return $netWorth / 2;
     }
 }
