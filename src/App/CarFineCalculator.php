@@ -8,15 +8,18 @@ abstract class CarFineCalculator implements FineCalculator
     {
         $weeksPastDeadline = TimeSinceDeadline::weeks($taxExpiresDate);
 
-        $fine = 500.0;
-
-        $fine = 500 * pow($this->penaltyIncrease(), $weeksPastDeadline - 1);
+        $fine = 500 * $this->getPenaltyIncreaseMultiplier($weeksPastDeadline);
 
         if ($fine > $this->maximumFine()) {
             $fine = $this->maximumFine();
         }
 
         return $fine;
+    }
+
+    protected function getPenaltyIncreaseMultiplier($weeksPastDeadline)
+    {
+        return pow($this->penaltyIncrease(), $weeksPastDeadline - 1);
     }
 
     abstract protected function maximumFine();
