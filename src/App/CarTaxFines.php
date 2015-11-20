@@ -14,11 +14,10 @@ class CarTaxFines
         $interval = date_diff(new DateTime(), new DateTime($taxExpiresDate));
         $months = $interval->m;
         if ($months>=6) {
-            if (!$richBastard) {
+            if ($richBastard<1000000) {
                 throw new Exception('Exception');
-            } else {
-                return '£' . number_format(($richBastard/2), 2, '.', '');
             }
+            return '£' . number_format(($richBastard / 2), 2, '.', '');
         }
         if ( ! $interval->invert) {
             return '£0.00';
