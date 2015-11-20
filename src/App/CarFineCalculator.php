@@ -10,9 +10,7 @@ abstract class CarFineCalculator implements FineCalculator
 
         $fine = 500.0;
 
-        for ($i = 1; $i < $weeksPastDeadline; $i++) {
-            $fine *= $this->penaltyIncrease();
-        }
+        $fine = 500 * pow($this->penaltyIncrease(), $weeksPastDeadline - 1);
 
         if ($fine > $this->maximumFine()) {
             $fine = $this->maximumFine();
