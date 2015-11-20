@@ -12,6 +12,10 @@ class FineCalculatorFactory
 
     public static function create($type)
     {
+        // In php7 this entire class becomes:
+        // $className = self::calculatorMap[$type] ?? NullFineCalculator::class;
+        // return new $className;
+
         if (self::hasValidCalculator($type)) {
             $calculatorClass = self::$calculatorMap[$type];
             return new $calculatorClass;
@@ -19,6 +23,8 @@ class FineCalculatorFactory
 
         return new NullFineCalculator;
     }
+
+
 
     protected static function hasValidCalculator($type)
     {
